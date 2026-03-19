@@ -1,0 +1,60 @@
+
+
+def solve():
+    n1, n2 = map(int, input().split())
+
+    b1 = n1.bit_count()
+    b2 = n2.bit_count()
+    print(b1, b2)
+
+    if(b1==b2):
+        print(n1)
+
+    elif(b1<b2):
+        print("Please tell")
+        binary_str  = list(bin(n1)[2:])
+        zeroc=0
+        n = b2-b1
+        for i in range(len(binary_str)-1 ,  -1, -1  )  :
+            if(n>0  and  (binary_str[i] == '0'  ) ):
+                binary_str[i] = '1'   
+                n-=1
+            elif(n==0):
+                break     
+        if(n>0):
+            print("still help needed")
+            print(2**b2 -1 )
+
+        else:
+            print(len(binary_str))
+            arb = 1
+            result = 0
+            for i in binary_str:
+                result += arb
+                
+            
+
+    else:
+        l = []
+        while(n1 > 0):
+            a = n1%2
+            l.append(a)
+            n1 = n1//2
+        
+        while(b2 and (len(l) > 0 )):
+            ab = l.pop()
+            if(ab==1):
+                b2-=1
+
+        i=1
+        summ=0
+        n = len(l)
+        for k in range(0,n):
+            summ += i*l[k]
+            i*=2
+        print(summ)
+
+
+t = int(input())
+for _ in range(t):
+    solve()
